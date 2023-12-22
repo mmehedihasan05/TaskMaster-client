@@ -19,7 +19,7 @@ const Banner = () => {
                         more with TaskMaster's user-friendly features and collaborative tools.
                     </p>
                     <button className="btn btn-primary">
-                        <NavLink to="/login">Get Started</NavLink>
+                        <NavLink to="/login">Let’s Explore</NavLink>
                     </button>
                 </div>
             </div>

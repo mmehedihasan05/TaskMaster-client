@@ -1,7 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable no-unreachable */
-/* eslint-disable react-hooks/exhaustive-deps */
-
 import {
     createUserWithEmailAndPassword,
     getAuth,
@@ -69,20 +65,6 @@ const AuthProvider = ({ children }) => {
             },
         };
     }
-
-    // const {
-    //     data: registerStatus,
-    //     isLoading,
-    //     isError,
-    //     refetch,
-    // } = useQuery({
-    //     queryKey: ["userRegister"],
-    //     queryFn: async (queryKey, variables) => {
-    //         const res = await axiosSecure.post(`/adduser`, variables.userInfo);
-    //         return res.data;
-    //     },
-    //     enabled: false,
-    // });
 
     // Create User || Register Page
     const userCreate = ({ userFullName, userProfileImageUrl, userEmail, userPassword }) => {

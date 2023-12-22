@@ -25,7 +25,7 @@ const Register = () => {
     const [showPassword, setShowPassword] = useState(true);
     const [passwordInput, setPasswordInput] = useState("");
     const [dateOfBirth, setDateOfBirth] = useState("");
-    // const { userCreate } = useContext(AuthContext);
+    const { userCreate } = useContext(AuthContext);
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -72,18 +72,18 @@ const Register = () => {
             userCompanyName: null,
         };
 
-        // console.log(data);
-        // userCreate(data)
-        //     .then((response) => {
-        //         // Reset form after successfull register
-        //         e.target.reset();
-        //     })
-        //     .catch((error) => {});
+        console.log(data);
+        userCreate(data)
+            .then((response) => {
+                // Reset form after successfull register
+                e.target.reset();
+            })
+            .catch((error) => {});
     };
 
     return (
         <div className="max-w-3xl mx-auto space-y-8 mb-8 px-4 lg:px-0">
-            <SectionTitle data={{ title: "Signup as Employee", noBorder: "true" }}></SectionTitle>
+            <SectionTitle data={{ title: "Register", noBorder: "true" }}></SectionTitle>
 
             <form onSubmit={handleRegister}>
                 <div className="flex flex-col space-y-4">
