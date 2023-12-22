@@ -10,9 +10,6 @@ import { GrLogout } from "react-icons/gr";
 const NavBar = () => {
     // const { logout, currentUser } = useContext(AuthContext);
 
-    const [navItem_dropdownShow, setNavItem_dropdownShow] = useState(false);
-    const [profileItem_dropdownShow, setProfileItem_dropdownShow] = useState(false);
-
     return (
         <div id="navbar" className="bg-white shadow-md ">
             <div
@@ -26,7 +23,7 @@ const NavBar = () => {
                     {/* Brand Logo */}
                     <div>
                         <NavLink to="/">
-                            <img className="w-[120px] md:w-[180px] " src="/logo.png" alt="" />
+                            <img className="w-[140px] md:w-[220px] " src="/logo.png" alt="" />
                         </NavLink>
                     </div>
                 </div>
