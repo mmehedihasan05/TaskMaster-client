@@ -9,8 +9,15 @@ import {
 } from "@mui/material";
 import Select from "react-select";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../AuthProvider";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 const CreateTask = () => {
+    const axiosSecure = useAxiosSecure();
+    const { currentUser } = useContext(AuthContext);
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
     const [priority, setPriority] = useState("");
     const [deadLine, setDeadLine] = useState("");
 
@@ -20,14 +27,53 @@ const CreateTask = () => {
         { value: "high", label: "High" },
     ];
 
+    const handleCreateTask = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+
+        let taskInfo = {
+            userId: currentUser?.uid,
+            userEmail: currentUser?.email,
+            taskTitle: title,
+            taskDescription: description,
+            taskPriority: priority.value,
+            taskDeadLine: deadLine,
+            taskStatus: "todo",
+        };
+        console.log(taskInfo);
+
+        // Uploading blog data to server
+        return toast.promise(
+            axiosSecure
+                .post("/create-task", taskInfo)
+                .then((response) => {
+                    if (response.data.acknowledged) {
+                        form.reset();
+                        return <b>Task Added Successfully.</b>;
+                    } else {
+                        throw new Error("Failed to add task!");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    throw new Error("Failed to add task!");
+                }),
+            {
+                loading: "Creating Task...",
+                success: (message) => message,
+                error: (error) => <b>Failed to add task!</b>,
+            }
+        );
+    };
+
     return (
         <div className="flex justify-center items-center  max-w-xl mx-auto">
-            <form onSubmit={""} className="flex flex-col space-y-4 w-full">
+            <form onSubmit={handleCreateTask} className="flex flex-col space-y-4 w-full">
                 <TextField
                     id="outlined-basic"
                     label="Title"
                     variant="outlined"
-                    onChange={(event) => setFullName(event.target.value)}
+                    onChange={(event) => setTitle(event.target.value)}
                     required
                 />
                 <TextField
@@ -35,6 +81,7 @@ const CreateTask = () => {
                     label="Description"
                     multiline
                     maxRows={4}
+                    onChange={(event) => setDescription(event.target.value)}
                     required
                 />
                 <Select

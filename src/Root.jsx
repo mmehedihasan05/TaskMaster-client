@@ -12,11 +12,11 @@ const Root = () => {
         <div id="appRoot" className="">
             <div className="min-h-screen flex flex-col gap-y-8">
                 {currentUser?.email ? (
-                    <div className="px-2 py-2 grid grid-cols-3">
-                        <div className="col-span-1">
+                    <div className="px-2 py-2 flex gap-8">
+                        <div className=" min-w-60">
                             <Dashboard_nav></Dashboard_nav>
                         </div>
-                        <div className="col-span-2">
+                        <div className="">
                             <Outlet></Outlet>
                         </div>
                     </div>

@@ -8,7 +8,7 @@ import { AuthContext } from "../AuthProvider";
 // baseURL: "https://technest-blog-backend.vercel.app",
 // baseURL: "http://localhost:5000",
 
-let production = true;
+let production = false;
 
 const useAxiosSecure = () => {
     const all = useContext(AuthContext);

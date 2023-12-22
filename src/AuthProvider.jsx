@@ -218,19 +218,8 @@ const AuthProvider = ({ children }) => {
                     .post(`/authenticate`, { email, userId })
                     .then((response) => {
                         console.log("JWT || Authentication Success", response);
-
-                        // admin role checking
-                        axiosSecure
-                            .get(`/role-check?email=${email}&userId=${userId}`)
-                            .then((res) => {
-                                console.log("res from admin chk", res.data);
-                                setIsAdmin(res.data.isAdmin);
-                                setCurrentUser(user);
-                                setLoading(false);
-                            })
-                            .catch((err) =>
-                                console.log("error from authprovider/admin role check")
-                            );
+                        setLoading(false);
+                        setCurrentUser(user);
                     })
                     .catch((jwt_Error) => {
                         console.log(

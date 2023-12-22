@@ -36,7 +36,7 @@ const Dashboard_nav = () => {
                     aria-label="close sidebar"
                     className="drawer-overlay"
                 ></label>
-                <div className="py-8 space-y-6 bg-[white] h-full ">
+                <div className="py-8 space-y-6 bg-[white] h-full fixed ">
                     {/* Website logo */}
                     <div className="">
                         <NavLink to="/">
